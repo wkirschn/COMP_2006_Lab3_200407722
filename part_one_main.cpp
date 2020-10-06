@@ -1,72 +1,88 @@
-// COMP 2006 Lab3: Dynamic Memory
-// File: part_one_main.cpp
-// Version 1.0
-// Date  28 Sept 2020
-// Author  Tom Marazzo
-// Description
-// This file is used to demonstrate dynamic memory in
-// C++ and to process an array of objects of compound
-// type where the user specifies the number of
-// elements in the array at run-time.
-/////////////////////////////////////////////////////
+/*
+ *   Project: COMP2006 - Lab 3
+ *   Name:    Wyatt Kirscner
+ *   Date:    October 6th
+ *   Notes:   I have made a few changes to the structure to allow for multiple inputs before displaying
+ *            the dates and the temps. The first loop would exit out by only asking for one input.
+ *
+ */
 
-#include <iostream>
+#define _CRT_SECURE_NO_WARNINGS#include <iostream>
+
 #include "Weather.h"
+
+ //#include <cstring>
+ //#include <string>
 using namespace std;
 
-
-int main()
-{
+int main() {
     int i; // loop counter
     int n; // number of objects in Weather array
-    
+
     // declare a pointer named weatherArray of type Weather here
-    
-    cout << "Weather Data" << endl
-    << "=====================" << endl
-    << "Days of Weather: ";
+
+    Weather* weatherArray = nullptr; // Is nullptr built in?
+
+    cout << "Weather Data" << endl <<
+        "=====================" << endl <<
+        "Days of Weather: ";
     cin >> n;
     cin.ignore();
-    
+
     // allocate dynamic memory for weatherArray here
-    
-    cout << "Enter date: ";
 
-    cin.get(dateDescription, 7, '\n');
+    weatherArray = new Weather[n];
 
-    cin.ignore(2000, '\n');
+    for (i = 0; i < n; i++) {
+        char dateDescription[7];
+        double high;
+        double low;
 
-    cout << "Enter high: ";
+        cout << "Enter date: ";
 
-    cin >> high;
+        cin.get(dateDescription, 7, '\n');
 
-    cin.ignore(2000, '\n');
+        cin.ignore(2000, '\n');
 
-    cout << "Enter low : ";
+        cout << "Enter high: ";
 
-    cin >> low;
+        cin >> high;
 
-    cin.ignore(2000, '\n');
+        cin.ignore(2000, '\n');
 
-    if (dateDescription[0] != '\0')
+        cout << "Enter low : ";
 
-    {
+        cin >> low;
 
-        weatherArray[i].setData(dateDescription, low, high);
+        cin.ignore(2000, '\n');
 
+        cout << "Print out: " << dateDescription << endl;
+
+        cin.ignore(2000, '\n');
+
+        if (dateDescription[0] != '\0')
+
+        {
+
+            cout << "PASS" << endl;
+            //dateDescription (BELOW)
+            weatherArray[i].setData(dateDescription, low, high);
+
+        }
     }
-    
-    cout << endl
-    << "Weather report:" << endl
-    << "Date        high  low" << endl
-    << "======================" << endl;
-    
-    for(i = 0; i < n; i++)
-    {
+    cout << endl <<
+        "Weather report:" << endl <<
+        "Date        high  low" << endl <<
+        "======================" << endl;
+
+    for (i = 0; i < n; i++) {
         weatherArray[i].display();
     }
-    
+
     // deallocate dynamic memory here
-    
+    delete[] weatherArray;
+    weatherArray = nullptr;
+
     return 0;
+
 }

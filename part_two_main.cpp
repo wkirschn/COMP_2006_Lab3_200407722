@@ -1,3 +1,4 @@
+/*
 // COMP 2006 Lab3: Dynamic Memory
 // File: part_two_main.cpp
 // Version 1.0
@@ -23,6 +24,8 @@ int main()
     int i; // loop counter
     int n; // number of objects in Weather array
     
+    int* weatherArray = Weather;
+
     // declare a pointer name weatherArray of type Weather here
     
     cout << "Weather Data" << endl
@@ -72,5 +75,5 @@ int main()
 
 
 
-
+*/
 
